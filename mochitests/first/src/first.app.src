@@ -1,0 +1,9 @@
+%% -*- erlang -*-
+{application, first,
+ [{description, "first"},
+  {vsn, "0.1"},
+  {modules, []},
+  {registered, []},
+  {mod, {'first_app', []}},
+  {env, []},
+  {applications, [kernel, stdlib, crypto]}]}.
