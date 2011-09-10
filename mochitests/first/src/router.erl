@@ -1,7 +1,10 @@
 -module(router).
 -behaviour(gen_server).
 -export([start_link/0]).
+-export([init/1, handle_call/3, handle_cast/2, handle_info/2,
+				terminate/2, code_change/3]).
 
+-export([send/2, login/2, logout/1]).
 
 -record(state, {pid2id, id2pid}).
 % Lookup the registry for a server named after this module
@@ -18,18 +21,19 @@ login(Id, Pid) when is_pid(Pid) ->
 logout(Pid) when is_pid(Pid) ->
 		gen_server:call(?SERVER, {logout, Pid}).
 
+
 % OTP Contract goes here
 start_link() ->
 		gen_server:start_link({global, ?MODULE}, ?MODULE, [], []).
 
-handle_call({login, Id, Pid}, From, State) when is_pid(Pid) ->
+handle_call({login, Id, Pid}, _From, State) when is_pid(Pid) ->
 		ets:insert(State#state.pid2id, {Pid, Id}),
 		ets:insert(State#state.id2pid, {Id, Pid}),
 		link(Pid),
 		io:format("~w logged in as ~w\n", [Pid, Id]),
 		{reply, ok, State};
 
-handle_call({logout, Pid}, From, State) when is_pid(Pid) ->
+handle_call({logout, Pid}, _From, State) when is_pid(Pid) ->
 		unlink(Pid),
 		PidRows = ets:lookup(State#state.pid2id, Pid),
 		case PidRows of 
@@ -46,7 +50,7 @@ handle_call({logout, Pid}, From, State) when is_pid(Pid) ->
 		io:format("pid ~w logged out\n", [Pid]),
 		{reply, ok, State};
 
-handle_call({send, Id, Msg}, From, State) ->
+handle_call({send, Id, Msg}, _From, State) ->
 		Pids = [Pid || {_, Pid} <- ets:lookup(State#state.id2pid, Id)],
 		M = {router_msg, Msg},
 		[Pid ! M || Pid <- Pids],
@@ -69,11 +73,11 @@ handle_info(Info, State) ->
 		end,
 		{noreply, State}.
 
-handle_cast(Msg, State) ->
+handle_cast(_Msg, State) ->
 		{noreply, State}.
 
-terminate(Reason, State) ->
+terminate(_Reason, _State) ->
 		ok.
 
-code_change(Oldversion, State, Extra) ->
+code_change(_Oldversion, State, _Extra) ->
 		{ok, State}.
