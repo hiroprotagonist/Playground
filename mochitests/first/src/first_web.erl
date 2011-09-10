@@ -4,7 +4,6 @@
 %% @doc Web server for first.
 
 -module(first_web).
--author("Stefan Gebhardt <stefan.gebhardt@finux.net>").
 
 -export([start/1, stop/0, loop/2]).
 
