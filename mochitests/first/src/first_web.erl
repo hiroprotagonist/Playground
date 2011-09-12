@@ -60,7 +60,7 @@ loop(Req, DocRoot) ->
 feed(Response, Id, N) ->
 	receive
 	{router_msg, Msg} ->
-			Html = io:format("Msg #~w: '~s'", [N, Msg]),
+			Html = io_lib:format("Msg #~w: '~s'", [N, Msg]),
 			Response:write_chunk(Html)
 	end,
 	feed(Response, Id, N+1).
