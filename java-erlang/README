@@ -1,0 +1,5 @@
+COMPILE:
+	javac -classpath /usr/local/lib/erlang/lib/jinterface-1.5.4/priv/OtpErlang.jar MathClient.java
+
+RUN:
+	java -cp .:/usr/local/lib/erlang/lib/jinterface-1.5.4/priv/OtpErlang.jar MathClient
