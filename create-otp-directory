@@ -1,0 +1,14 @@
+#!/bin/bash
+if [ $# -ne 1 ]
+then
+		echo "Usage: Supply project name"
+		exit 1
+fi
+
+mkdir -v $1
+echo $1
+mkdir -v $1/doc
+mkdir -v $1/ebin
+mkdir -v $1/inlcude
+mkdir -v $1/priv
+mkdir -v $1/src

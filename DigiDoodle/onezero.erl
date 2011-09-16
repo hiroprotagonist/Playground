@@ -10,3 +10,4 @@ reverse([], Accu) ->
 		Accu;
 reverse([First|Rest], Accu) ->
 		reverse(Rest, [First|Accu]).
+
