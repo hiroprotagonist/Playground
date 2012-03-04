@@ -44,6 +44,16 @@
     //s.parentNode.insertBefore(g,s)}(document,'script'));
     $(document).ready(function() {
     	app = new App();
+    	$('button[data-role="increase-day"]').live('click', function() {
+    		var success = function() {console.log("asd");};
+    		var plate = $(this).parent('.plate')
+			  , id = $('[data-role="name"]', plate).text()
+			  , data = {
+			  		name: $('[data-role="name"]', plate).text(),
+			  		phase: 'black',
+			  		day: parseInt($('[data-role="day"]', plate).text()) +1};
+    		app.update(id, data, success);
+    	});
     	app.listAll();
     });
   </script>

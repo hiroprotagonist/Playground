@@ -15,8 +15,9 @@ App.prototype.listAll = function() {
 				$('<div>').addClass('plate')
 					.addClass(colorType)
 					.css('background', user.phase)
-					.append($('<div>').addClass('name').text(user.name))
-					.append($('<div>').addClass('day').text(user.day));
+					.append($('<div data-role="name">').addClass('name').text(user.name))
+					.append($('<div data-role="day">').addClass('day').text(user.day))
+					.append($('<button data-role="increase-day">+</button>'));
 			$('[role="main"]').append(plate);
 		});
 	};
@@ -26,6 +27,16 @@ App.prototype.listAll = function() {
 		dataType: 'json',
 		error: errorBack,
 		success: render
+	});
+};
+App.prototype.update = function(id, pdata, successCallback) {
+	$.ajax({
+		url: '/users/' + id,
+		type: 'POST',
+		dataType: 'json',
+		data: pdata,
+		error: function() {console.log('Update failed! Ooops.');},
+		success: successCallback
 	});
 };
 App.prototype.join = function(name) {

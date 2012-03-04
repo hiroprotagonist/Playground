@@ -52,6 +52,12 @@ app.put('/users', function(req, res) {
 		else res.json({msg: "Welcome! You're in.", uri: '/users/' + saved.name}, 201);
 	});
 });
+app.post('/users/:id', function(req, res) {
+		users.update(req.params.id, req.body, function(err, user) {
+			if( err ) res.json({msg: 'Failed updating user'}, 400);
+			else res.json(200, user);
+			});
+		});
 app.del('/users/:id', function(req, res) {
 	users.remove(req.params.id, function(error, deleted) {
 	  	if( error ) res.json({msg: "User not found"}, 404); 

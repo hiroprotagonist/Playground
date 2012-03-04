@@ -32,3 +32,12 @@ Users.prototype.remove = function(pname, callback) {
 		else callback(null, deleted);
 	});
 };
+Users.prototype.update = function(id, data, callback) {
+	var self = this;
+	this.db.users.update({name: id}, data, {multi: false}, function(err) {
+			if( err ) { 
+				callback(this.err);
+			} else {
+				self.findUser(id, callback);
+			}});
+};
