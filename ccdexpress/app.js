@@ -53,9 +53,18 @@ app.put('/users', function(req, res) {
 	});
 });
 app.post('/users/:id', function(req, res) {
+		var phaseCycle = ['black', 'red', 'orange', 'yellow', 'green', 'blue', 'white'];
+		if (req.body.phase === 'black') {
+			req.body.day = 1;
+			req.body.phase = 'red';	
+		} else if(req.body.day > 21) {
+			req.body.day = 1;
+			var idx = phaseCycle.indexOf(req.body.phase);
+			req.body.phase = (idx == phaseCycle.indexOf('white')) ? 'red' : phaseCycle[idx +1];
+		}
 		users.update(req.params.id, req.body, function(err, user) {
 			if( err ) res.json({msg: 'Failed updating user'}, 400);
-			else res.json(200, user);
+			else res.json(user, 200);
 			});
 		});
 app.del('/users/:id', function(req, res) {

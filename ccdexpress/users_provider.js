@@ -14,30 +14,30 @@ Users.prototype.list = function(callback) {
 		else callback(null, users);
 		});
 	};
-Users.prototype.findUser = function(pname, callback) {
-	this.db.users.findOne({name: pname},function(err, user) {
+
+Users.prototype.findUser = function(id, callback) {
+	this.db.users.findOne({_id: this.db.ObjectId( id )}, function(err, user) {
 		if( err || !user ) callback(this.err);
 		else callback(null, user);
 	});
 };
+
 Users.prototype.add = function(user, callback) {	
 	this.db.users.save(user, function(err, saved) {
 		if( err || !saved ) callback(this.err);
 		else callback(null, saved);
 	});
 };
-Users.prototype.remove = function(pname, callback) {
-	this.db.users.remove({name: pname}, function(err, deleted) {
+Users.prototype.remove = function(id, callback) {
+	this.db.users.remove({_id: this.db.ObjectId( id )}, function(err, deleted) {
 		if( err || !deleted ) callback(this.err);
 		else callback(null, deleted);
 	});
 };
 Users.prototype.update = function(id, data, callback) {
-	var self = this;
-	this.db.users.update({name: id}, data, {multi: false}, function(err) {
-			if( err ) { 
-				callback(this.err);
-			} else {
-				self.findUser(id, callback);
-			}});
+	var users = this;
+	this.db.users.update({_id: this.db.ObjectId( id )}, data, {multi: false}, function(err) {
+			if( err ) callback(this.err);
+			else users.findUser(id, callback);
+		});
 };

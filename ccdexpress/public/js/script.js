@@ -2,6 +2,13 @@
 
 App = function() {
 };
+App.prototype.renderData = function(user, plate) {
+	var colorType = user.phase === 'black' ? 'dark' : 'light';
+	plate.addClass(colorType).css('background', user.phase);
+	$('[data-role="name"]', plate).text(user.name);
+	$('[data-role="day"]', plate).text(user.day);
+	plate.data('phase', user.phase);
+}
 App.prototype.listAll = function() {
 	var errorBack = function(xhr, text, error) {
 		console.log('Error while listing');
@@ -10,14 +17,13 @@ App.prototype.listAll = function() {
 		// wipe out here ?
 		$('.plate').remove();
 		$.each(users, function(index, user) {
-			var colorType = user.phase === 'black' ? 'dark' : 'light';
-			var plate = 
-				$('<div>').addClass('plate')
-					.addClass(colorType)
-					.css('background', user.phase)
-					.append($('<div data-role="name">').addClass('name').text(user.name))
-					.append($('<div data-role="day">').addClass('day').text(user.day))
-					.append($('<button data-role="increase-day">+</button>'));
+			var plate = $('<div>').addClass('plate')
+				.attr('id', user._id)
+				.css('background', user.phase)
+				.append($('<div data-role="name">').addClass('name'))
+				.append($('<div data-role="day">').addClass('day'))
+				.append($('<button data-role="increase-day">+</button>'));
+			new App().renderData(user, plate);	
 			$('[role="main"]').append(plate);
 		});
 	};

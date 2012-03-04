@@ -45,13 +45,15 @@
     $(document).ready(function() {
     	app = new App();
     	$('button[data-role="increase-day"]').live('click', function() {
-    		var success = function() {console.log("asd");};
     		var plate = $(this).parent('.plate')
-			  , id = $('[data-role="name"]', plate).text()
+			  , id = plate.attr('id')
 			  , data = {
 			  		name: $('[data-role="name"]', plate).text(),
-			  		phase: 'black',
+			  		phase: plate.data('phase'),
 			  		day: parseInt($('[data-role="day"]', plate).text()) +1};
+    		var success = function(user) {
+				app.renderData(user, plate);
+			};
     		app.update(id, data, success);
     	});
     	app.listAll();
