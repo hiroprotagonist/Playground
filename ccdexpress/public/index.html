@@ -20,24 +20,33 @@
 
   </header>
   <div role="main">
-hi
+  </div>
+  <div id="joinform" style="display:none;">
+  	<label for="entername">Enter Name</label>
+  	<input id="entername" type="text"/>
+  	<button onclick="app.join($('input#entername').val());">Join!</button>
   </div>
   <footer>
-
+	
   </footer>
 
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>-->
   <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
 
   <script src="js/plugins.js"></script>
   <script src="js/script.js"></script>
 
   <script>
-    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-    s.parentNode.insertBefore(g,s)}(document,'script'));
+    //var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+    //(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    //g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    //s.parentNode.insertBefore(g,s)}(document,'script'));
+    $(document).ready(function() {
+    	app = new App();
+    	app.listAll();
+    });
   </script>
+  <script src="js/dev.js"></script>
 </body>
 </html>

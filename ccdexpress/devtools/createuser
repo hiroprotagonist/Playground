@@ -4,6 +4,6 @@ if [ -z $node ] ; then
 fi
 
 curl -v -X PUT http://$node/users -H "Content-Type: application/json" --data '
-{"name":"Tobias",
-	"phase": "black",
-	"day": 0}'
+{"name":"Daniel",
+	"phase": "red",
+	"day": 12}'

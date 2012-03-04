@@ -63,20 +63,8 @@ table { border-collapse: collapse; border-spacing: 0; }
 td { vertical-align: top; }
 
 .chromeframe { margin: 0.2em 0; background: #ccc; color: black; padding: 0.2em 0; }
-
-
-
-
-
-
-
-
-
 @media only screen and (min-width: 35em) {
-  
-
 }
-
 .ir { display: block; border: 0; text-indent: -999em; overflow: hidden; background-color: transparent; background-repeat: no-repeat; text-align: left; direction: ltr; *line-height: 0; }
 .ir br { display: none; }
 .hidden { display: none !important; visibility: hidden; }
@@ -100,4 +88,31 @@ td { vertical-align: top; }
   @page { margin: 0.5cm; }
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3 { page-break-after: avoid; }
+}
+/* My Style */
+.plate {
+	display: block;
+	float: left;
+	height: 200px;
+	width: 150px;
+	margin: 20px;
+	padding: 15px;
+	border-radius: 17px;
+	
+}
+.plate.dark { color: white; }
+.plate.light { color: black; }
+.name {
+	font-size: large;
+}
+.day {
+	font-size: xx-large;
+}
+#devpanel {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 50px;
+	background: green;
 }
