@@ -56,7 +56,20 @@
 			};
     		app.update(id, data, success);
     	});
-    	app.listAll();
+    	$('button[data-role="remove-user"]').live('click', function() {
+    		if( !confirm('Really leaving? CCD is good for you.') ) {
+    			return false;
+    		}
+    		var plate = $(this).parent('.plate')
+			  , id = plate.attr('id');
+    		var success = function(data) {
+				plate.fadeOut('slow', function() {$(this).remove();});
+			};
+			var error = function() { alert('Ooops! Delete failed.'); };
+    		app.remove(id, success);
+    	});
+
+    app.listAll();
     });
   </script>
   <script src="js/dev.js"></script>

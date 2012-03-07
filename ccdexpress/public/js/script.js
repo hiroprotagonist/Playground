@@ -22,7 +22,8 @@ App.prototype.listAll = function() {
 				.css('background', user.phase)
 				.append($('<div data-role="name">').addClass('name'))
 				.append($('<div data-role="day">').addClass('day'))
-				.append($('<button data-role="increase-day">+</button>'));
+				.append($('<button data-role="increase-day">+</button>'))
+				.append($('<button data-role="remove-user">X</button>'));
 			new App().renderData(user, plate);	
 			$('[role="main"]').append(plate);
 		});
@@ -45,6 +46,15 @@ App.prototype.update = function(id, pdata, successCallback) {
 		success: successCallback
 	});
 };
+App.prototype.remove = function(id, successCallback) {
+	$.ajax({
+		url: '/users/' + id,
+		type: 'DELETE',
+		dataType: 'json',
+		error: function() {console.log('Update delete failed! Ooops.');},
+		success: successCallback
+	});
+};
 App.prototype.join = function(name) {
 	if ( !name || typeof name != 'string' || name.trim() == '' ) {
 		alert('Who are You?');
@@ -64,4 +74,6 @@ App.prototype.join = function(name) {
 		error: function() { alert('Oops!'); },
 		success: self.listAll
 	});
-}; 
+};
+
+
