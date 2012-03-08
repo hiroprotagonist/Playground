@@ -9,12 +9,7 @@
 	User.Model = Backbone.Model.extend({
 		urlRoot: '/users',
 		idAttribute: "_id",
-		initialize: function() {},
-		defaults: {
-			name: 'Default Tommy',
-			day: 0,
-			phase: 'black'			
-		}
+		initialize: function() {}
 	});
 
 	// Define a user list
@@ -28,7 +23,7 @@
 			this.model.bind("change", this.render)
 		},
 		render: function() {
-			var template = _.template( $('#user_template').html(), this.model.attributes);
+			var template = _.template( $('#user_template').html(), {'data': this.model.attributes});
 			this.$el.html( template );
 			return this;
 		},
@@ -56,5 +51,35 @@
 			return this;
 		}
 	});
+	
+	
+	User.Joinform = Backbone.View.extend({
+		events: {
+			'click #join_form_join':	'submit_join',
+			'click #join_form_cancel':	'cancel_join'
+		},
+		render: function() {
+			$(this.dlgform).dialog({
+				autoOpen: open,
+				height:480,
+				width: 640,
+				title: 'Join CCD',
+				modal: true
+			});
+			this.el = this.dlgform;
+			this.delegateEvents(this.events);
+			return this;
+		},
+		initialize: function() {
+			_.bindAll(this, 'render');
+			this.dlgform = $("#join_form_container").html();
+			this.render().el;
+		},
+		show: function() {
+		},
+		submit_join: function() { console.log('join');},
+		cancel_join: function() { console.log('cancel');}
+	});
+
 
 })(ccd.module("user"));

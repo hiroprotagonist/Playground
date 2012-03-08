@@ -46,10 +46,12 @@ app.get('/users/:id', function(req, res) {
 		else res.json(user, 200);
 	});
 });
+
+// POST / Add new user 
 app.post('/users', function(req, res) {
 	users.add(req.body, function(error, saved) {
 	  	if( error ) res.json({msg: "Cannot add user"}, 500);
-		else res.json({msg: "Welcome! You're in.", uri: '/users/' + saved.name}, 201);
+		else res.json(saved, 201);
 	});
 });
 

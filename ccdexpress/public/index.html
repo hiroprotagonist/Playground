@@ -11,6 +11,7 @@
 
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/jquery-ui.custom.css">
 
   <script src="js/libs/modernizr-2.5.3.min.js"></script>
 </head>
@@ -36,20 +37,29 @@
 
   <script src="js/plugins.js"></script>
   <script src="js/libs/underscore-min.js"></script>
+  <script src="js/libs/jquery-ui.custom.min.js"></script>
   <script src="js/libs/backbone-min.js"></script>
   <script src="js/src/application.js"></script>
   <script src="js/src/modules/user.js"></script>
 
   <!-- Access template variables with <%= %> -->
   <script type="text/template" id="user_template">
-  	<div class="plate" date-phase="<%= phase %>" id="<%= _id %>">
-  		<div class="name"><%= name %></div>
-  		<div class="day"><%= day %></div>
+  	<div class="plate" date-phase="<%= data.phase %>" id="<%= data._id %>">
+  		<div class="name"><%= data.name %></div>
+  		<div class="day"><%= data.day %></div>
   		<button data-role="increase-day">+</button>
   	</div>
   </script>
+  <script type="text/template" id="join_form_container">
+  	<div id="join_form">
+			<label for"join_form_name">Enter Your Name</label>
+			<input id="join_form_name" name="name"/>
+			<button id="join_form_cancel">Umpf! I am not ready yet</button>
+			<button id="join_form_join">I'll take the challenge</button>
+  	</div>
+  </script>
   
-  
+  <button id='show_join_form'>Join!</button>
 
   <script>
     //var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];

@@ -13,7 +13,7 @@ var ccd = {
 			}
 
 			// Create a module and save it under this name
-			return modules[name] = { Views: {} };
+			return modules[name] = { /*Views: {}*/ };
 		};
 	}()
 };
@@ -23,13 +23,14 @@ var ccd = {
 // initialized. Treat this as your single entry point into the 
 // application.
 jQuery(function($) {
-	// Initialize your application here.
+	 // Initialize your application here.
 	 um = ccd.module('user');
-//	 user = new um.Model({id: '4f57aa8fbab3955f0a000004'});
-//	 view = new um.Quickview({ 'el': $('#main'), 'model': user });
-//	 user.fetch();
 	 
-	 ulist = new um.List();
+	 $('#show_join_form').click(function() {
+	 	new um.Joinform;
+	 });
+	 
+	 ulist = new um.List;
 	 listview = new um.Listview({ 'el': $('#main'), collection: ulist });
 	 ulist.fetch();
 	

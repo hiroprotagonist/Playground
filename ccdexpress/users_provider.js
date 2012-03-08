@@ -22,7 +22,7 @@ Users.prototype.findUser = function(id, callback) {
 	});
 };
 
-Users.prototype.add = function(user, callback) {	
+Users.prototype.add = function(user, callback) {
 	this.db.users.save(user, function(err, saved) {
 		if( err || !saved ) callback(this.err);
 		else callback(null, saved);
