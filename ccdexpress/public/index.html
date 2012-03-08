@@ -19,7 +19,7 @@
   <header>
 
   </header>
-  <div role="main">
+  <div role="main" id="main">
   </div>
   <div id="joinform" style="display:none;">
   	<label for="entername">Enter Name</label>
@@ -31,17 +31,32 @@
   </footer>
 
 
-  <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>-->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
 
   <script src="js/plugins.js"></script>
-  <script src="js/script.js"></script>
+  <script src="js/libs/underscore-min.js"></script>
+  <script src="js/libs/backbone-min.js"></script>
+  <script src="js/src/application.js"></script>
+  <script src="js/src/modules/user.js"></script>
+
+  <!-- Access template variables with <%= %> -->
+  <script type="text/template" id="user_template">
+  	<div class="plate" date-phase="<%= phase %>" id="<%= _id %>">
+  		<div class="name"><%= name %></div>
+  		<div class="day"><%= day %></div>
+  		<button data-role="increase-day">+</button>
+  	</div>
+  </script>
+  
+  
 
   <script>
     //var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
     //(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
     //g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
     //s.parentNode.insertBefore(g,s)}(document,'script'));
+   /*
     $(document).ready(function() {
     	app = new App();
     	$('button[data-role="increase-day"]').live('click', function() {
@@ -71,7 +86,8 @@
 
     app.listAll();
     });
+    */
   </script>
-  <script src="js/dev.js"></script>
+<!--  <script src="js/dev.js"></script>-->
 </body>
 </html>

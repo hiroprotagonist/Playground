@@ -52,7 +52,8 @@ app.put('/users', function(req, res) {
 		else res.json({msg: "Welcome! You're in.", uri: '/users/' + saved.name}, 201);
 	});
 });
-app.post('/users/:id', function(req, res) {
+
+app.put('/users/:id', function(req, res) {
 		var phaseCycle = ['black', 'red', 'orange', 'yellow', 'green', 'blue', 'white'];
 		if (req.body.phase === 'black') {
 			req.body.day = 1;
