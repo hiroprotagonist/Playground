@@ -40,7 +40,7 @@ everyauth.password
 		});
 		return promise;
 	})
-	.loginSuccessRedirect('/')
+	.loginSuccessRedirect('/you')
 	.getRegisterPath('/register')
 	.postRegisterPath('/register')
 	.registerView('register.jade')
@@ -106,7 +106,6 @@ app.configure('development', function() {
 models.defineModels(mongoose, function() {
 	app.Document = Document = mongoose.model('Document');
 	app.User = User = mongoose.model('User');
-	app.LoginToken = LoginToken = mongoose.model('LoginToken');
 	db = mongoose.connect(app.set('db-uri'));
 })
 
@@ -117,10 +116,7 @@ app.configure('production', function(){
 */
 
 // Routes
-
 function loadUser(req, res, next) {
-	console.log ( req.user );
-	console.dir ( req.session.auth );
 	if ( req.session.auth && req.session.auth.loggedIn ) {
 		next();
 	} else {
@@ -128,24 +124,8 @@ function loadUser(req, res, next) {
 	}
 }
 app.get('/', loadUser, routes.index);
+app.get('/you', loadUser, routes.you);
 app.get('/documents', loadUser, routes.index);
-app.get('/sessions/new', function(req, res) {
-	res.render('sessions/new.jade', {
-		locals: { user: new User() }
-	});
-});
-
-app.post('/sessions', function(req, res) {
-  // Find the user and set the currentUser session variable
-});
-
-app.del('/sessions', loadUser, function(req, res) {
-	// Remove the session
-	if (req.session) {
-		req.session.destroy(function() {});
-	}
-	res.redirect('/sessions/new');
-});
 
 if ( !module.parent ) {
 	app.listen(3000);
