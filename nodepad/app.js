@@ -123,9 +123,14 @@ function loadUser(req, res, next) {
 		res.redirect('/login');
 	}
 }
+// UI routes
 app.get('/', loadUser, routes.index);
 app.get('/you', loadUser, routes.you);
 app.get('/documents', loadUser, routes.index);
+// Service routes
+app.get('/users/:id', loadUser, function(req, res) {
+	res.json( req.user, 200 );
+});
 
 if ( !module.parent ) {
 	app.listen(3000);
