@@ -9,6 +9,5 @@ script(type='text/javascript')
     var module_user = ccd.module('user');
     var user = new module_user.Model({_id: '#{user.id}'});
     var user_view = new module_user.Quickview({ 'el': $('#main'), model: user });
-
     user.fetch();
   });

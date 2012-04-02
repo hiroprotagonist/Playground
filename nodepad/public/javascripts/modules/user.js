@@ -23,15 +23,38 @@
 			this.model.bind("change", this.render)
 		},
 		render: function() {
-			var template = _.template( ccd.templates.you, {'data': this.model.attributes});
+			var colorType = this.model.attributes.phase === 'black' ? 'dark' : 'light'
+			  , template = _.template( ccd.templates.you, {'data': this.model.attributes, colorClass: colorType});
 			this.$el.html( template );
 			return this;
 		},
 		events: {
 			'click button[data-role="increase-day"]': 'increaseDay'
+			// ,'click button[data-role="remove-user"]': 'removeUser'
 		},
 		increaseDay: function() {
-			console.log(this.model.fetch());
+			var day = this.model.attributes.day
+			if ( !day || typeof day != 'number' ) {
+				day = 0;
+			}
+			day = day +1;
+			this.model.attributes.day = day;
+			this.model.save();
+		},
+		removeUser: function() {
+			if ( confirm('Really remove this user?') ) {
+				this.model.destroy({
+					sucess: function(model, response) {
+						console.log('success');
+						console.log(model);
+						console.log(response);
+					},
+					error: function(response) {
+						console.log('error');
+						console.log(response);	
+					}
+				});
+			}
 		}
 	});
 	User.Listview = Backbone.View.extend({

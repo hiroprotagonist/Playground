@@ -54,7 +54,7 @@ function defineModels(mongoose, fn) {
 		'hashed_password': String,
 		'salt': String,
 		'day': { type: Number, min: 0, max: 21, default: 0 },
-		'phase': { type: [String], validate: [validatePhase, 'invalid phase'], default: 'black' }
+		'phase': { type: String, validate: [validatePhase, 'invalid phase'], default: 'black' }
 	});
 
 	User.virtual('id')

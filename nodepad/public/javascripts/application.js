@@ -17,7 +17,7 @@ var ccd = {
 		};
 	}(),
 	templates: {
-		you: '<div class="plate" date-phase="<%= data.phase %>" id="<%= data._id %>">\
+		you: '<div class="plate <%= colorClass %>" date-phase="<%= data.phase %>" id="<%= data._id %>" style="background: <%= data.phase %>;">\
 				<div class="name"><%= data.name %></div>\
 				<div class="day"><%= data.day %></div>\
 				<button data-role="increase-day">+</button>\

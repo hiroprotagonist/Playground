@@ -116,6 +116,7 @@ app.configure('production', function(){
 */
 
 // Routes
+// Everybody can GET everybodies data 
 function loadUser(req, res, next) {
 	if ( req.session.auth && req.session.auth.loggedIn ) {
 		next();
@@ -123,16 +124,58 @@ function loadUser(req, res, next) {
 		res.redirect('/login');
 	}
 }
+// But Updates are firewalled
+function updateGranted(req, res, next) {
+	if ( req.params.id === req.user.id ) next();
+	else res.json( {}, 403 );
+}
+var fireWall = [loadUser, updateGranted];
+
 // UI routes
 app.get('/', loadUser, routes.index);
 app.get('/you', loadUser, routes.you);
-app.get('/documents', loadUser, routes.index);
+// app.get('/documents', loadUser, routes.index);
+
 // Service routes
 app.get('/users/:id', loadUser, function(req, res) {
 	res.json( req.user, 200 );
 });
 
+app.put('/users/:id', fireWall, function(req, res) {
+	// This is bad shit
+	// And its even shittier to place it in the model
+	var phaseCycle = ['black', 'red', 'orange', 'yellow', 'green', 'blue', 'white'];
+	if (req.body.phase === 'black') {
+		req.body.day = 1;
+		req.body.phase = 'red';	
+	} else if(req.body.day > 21) {
+		req.body.day = 1;
+		var idx = phaseCycle.indexOf(req.body.phase);
+		req.body.phase = (idx == phaseCycle.indexOf('white')) ? 'red' : phaseCycle[idx +1];
+	}
+	
+	var upd_cb = function(err, numAffected) {
+		if ( err || numAffected === 0 ) res.json( err, 500);
+		else {
+			User.findOne( {_id: req.user.id}, function( err, user ) {
+				if ( err || !user ) res.json({}, 404);
+				else res.json( user, 200 );
+			} );
+		}
+	}
+	User.update({_id: req.user.id}, {day: req.body.day, phase: req.body.phase}, {multi: false}, upd_cb);
+});
+
+app.del('/users/:id', fireWall, function(req, res) {
+	users.remove(req.params.id, function(error, deleted) {
+	  	if ( error ) res.json({msg: "User not found"}, 404); 
+		else res.json({msg: "Bye Bye! You're out."}, 200);
+	});
+});
 if ( !module.parent ) {
-	app.listen(3000);
+	var port = process.env.PORT || 3000;
+	app.listen(port, function() {
+		console.log("Listening on " + port);
+	});
 	console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 }
