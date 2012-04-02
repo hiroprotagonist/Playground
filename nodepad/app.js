@@ -134,9 +134,16 @@ var fireWall = [loadUser, updateGranted];
 // UI routes
 app.get('/', loadUser, routes.index);
 app.get('/you', loadUser, routes.you);
+app.get('/all', loadUser, routes.all);
 // app.get('/documents', loadUser, routes.index);
 
 // Service routes
+app.get('/users', loadUser, function(req, res) {
+	User.find(function(error, users) {
+	  	if( error ) res.json({msg: "Failed listing users"}, 500);
+		else res.json(users, 200);
+	});
+});
 app.get('/users/:id', loadUser, function(req, res) {
 	res.json( req.user, 200 );
 });
