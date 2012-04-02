@@ -23,7 +23,7 @@
 			this.model.bind("change", this.render)
 		},
 		render: function() {
-			var template = _.template( $(template.you), {'data': this.model.attributes});
+			var template = _.template( ccd.templates.you, {'data': this.model.attributes});
 			this.$el.html( template );
 			return this;
 		},

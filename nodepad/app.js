@@ -70,7 +70,7 @@ everyauth.password
 		});
 		return promise;
 	})
-	.registerSuccessRedirect('/');
+	.registerSuccessRedirect('/you');
 
 var app = module.exports = express.createServer(  );
 everyauth.helpExpress(app);
