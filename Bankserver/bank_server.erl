@@ -1,3 +1,7 @@
+%% Hi Peter
+%% This example is taken from the book "Concurrent Programming in Erlang".
+%% It is already distributed more than requested.
+
 -module(bank_server).
 -export([start/0, server/1]).
 
@@ -30,6 +34,8 @@ server(Data) ->
 	end.
 
 %% Business logic goes here
+%% ------------------------
+%% lookup: 
 lookup(Who, [{Who, Value}|_]) -> Value;
 lookup(Who, [_|T]) -> lookup(Who, T);
 lookup(_, _) -> undefined.
