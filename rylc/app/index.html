@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" ng-app="rylc">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rent A Car</title>
+  <link rel="stylesheet" href="css/app.css"/>
+  <link rel="stylesheet" href="css/jquery.mobile-1.2.0.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+</head>
+<body>
+
+	<div data-role="page" id="loginpage" ngm-shared-controller="loginctrl:LoginController">
+		<div data-role="header">
+			<h1>RYLC - Login</h1>
+		</div>
+		<div data-role="content">
+			<form data-ajax="false" ng-submit="loginctrl.login()">
+				<div data-role="fieldcontain">
+					<label for="loginpage_username">Username</label>
+					<input type="text" name="username" id="loginpage_username" ng-model="loginctrl.username"/>
+				</div>
+				<div data-role="fieldcontain">
+					<label for="loginpage_password">Password</label>
+					<input type="password" name="password" id="loginpage_password" ng-model="loginctrl.password"/>
+				</div>
+				<input type="submit" value="Login" ng-disabled="!loginctrl.loginPossible()"/>
+			</form>
+		</div>		
+	</div> <!-- /loginpage -->
+	
+	<div data-role="page" id="welcomepage" ng-controller="BookingController" ngm-shared-controller="loginctrl:LoginController">
+		<div data-role="header">
+			<h1>Hi {{loginctrl.customer.name}}</h1>
+		</div>
+		<div data-role="content">
+			<a href="#bookingspage" data-role="button">Bookings</a>
+		</div>
+	</div>
+	
+	<div data-role="page" id="bookingspage" ng-controller="BookingController">
+		<div data-role="header">
+			<h1>Bookings</h1>
+		</div>
+		<div date-role="content">
+			<ul data-role="listview">
+				<li ng-repeat="rental in rentals">
+					<h4>{{rental.car.manufacturer}} {{rental.car.description}}</h4>
+					<p>{{rental.hireStartDate}} - {{rental.hireEndDate}}</p>
+					<p class="ui-li-aside">Total: {{totalPrice(rental)|currency:"&euro;"}}</p>
+				</li>
+			</ul>
+			
+		</div>
+	</div>
+
+
+  <script src="lib/jquery-1.8.2.js"></script>
+  <script src="lib/jquery.mobile-1.2.0.js"></script>
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/jquery-mobile-angular-adapter.js"></script>  
+  <script src="js/logincontroller.js"></script>
+  <script src="js/bookingcontroller.js"></script>
+  <script src="js/rylc.js"></script>
+ 
+</body>
+</html>
