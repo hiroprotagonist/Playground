@@ -1,4 +1,8 @@
 "use strict";
+$(document).bind( 'mobileinit', function () {
+	$.mobile.ajaxEnabled = false;
+});
+
 var dueker = {
 	init_lvchumlvers : function () {
 		$('#dueker_lvchumlvers_page').live("pageshow", function() {
