@@ -15,6 +15,14 @@ var dueker = {
 //				$('#dueker_lvchumlvers_page_errorMsgDialog').popup("open");
 //			}
 //		});
+
+		$('.dueker_lvchumlvers_page').live("pageshow", function() {
+			var dlg = $('.dueker_lvchumlvers_page_errorMsgDialog');
+			if ( typeof dlg !== 'undefined' ) {
+				$( dlg ).popup("open");
+			}
+		});
+
 		$('#dueker_lvchumlvers_nve').live('change', function() {
 			var submitForm = $('#dueker_lvchumlvers_umlagern_form')[0];
 			var syncAction = document.createElement("INPUT");
