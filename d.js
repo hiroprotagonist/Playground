@@ -8,6 +8,7 @@ var dueker = {
 				// $( dlg ).popup("open");
 				// alert( dlg.text() );
 				var pop = $('<div>').html( '<p>moin moin</p>' );
+				$(this).append( pop );
 				pop.popup( 'open' );
 			}
 		});
