@@ -9,7 +9,13 @@ var dueker = {
 				alert( dlg.text() );
 			}
 		});
-
+		$('#dueker_lvchumlvers_page').live("pageshow", function() {
+			if ($('#dueker_lvchumlvers_nve').attr('value') == '') {
+				$('#dueker_lvchumlvers_nve').focus();
+			} else {
+				$('#dueker_lvchumlvers_zuplatz').focus();
+			}
+		});
 		$('#dueker_lvchumlvers_nve').live('change', function() {
 			var submitForm = $('#dueker_lvchumlvers_umlagern_form')[0];
 			var syncAction = document.createElement("INPUT");
