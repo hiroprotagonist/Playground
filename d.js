@@ -16,7 +16,7 @@ var dueker = {
 //			}
 //		});
 
-		$('.dueker_lvchumlvers_page').live("pageshow", function() {
+		$('.dueker_lvchumlvers_page').live("pageload", function() {
 			var dlg = $('.dueker_lvchumlvers_page_errorMsgDialog');
 			if ( typeof dlg !== 'undefined' ) {
 				$( dlg ).popup("open");
