@@ -5,11 +5,12 @@ var dueker = {
 		$('.dueker_lvchumlvers_page').live( "pageshow", function() {
 			var dlg = $('.dueker_lvchumlvers_page_errorMsgDialog', this);
 			if ( dlg.length > 0) {
-				// $( dlg ).popup("open");
+				 $( dlg ).simpledialog2();
 				// alert( dlg.text() );
 				// var pop = $('<div data-role="popup">moin</div>');
 				// $(this).append( pop );
 				// pop.popup( 'open' );
+				/*
 				$('<div>').simpledialog2({
 					mode: 'blank',
 					headerText: 'Some Stuff',
@@ -18,7 +19,8 @@ var dueker = {
 					      "<ul data-role='listview'><li>Some</li><li>List</li><li>Items</li></ul>"+
 					      // NOTE: the use of rel="close" causes this button to close the dialog.
 					      "<a rel='close' data-role='button' href='#'>Close</a>"
-				});			
+				});
+				*/
 				
 			}
 		});
