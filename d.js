@@ -1,7 +1,7 @@
 "use strict";
 var dueker = {
 	init_lvchumlvers : function () {
-
+/*
 		$('.dueker_lvchumlvers_page').live( "pageshow", function() {
 			var dlg = $('.dueker_lvchumlvers_page_errorMsgDialog', this);
 			if ( dlg.length > 0) {
@@ -24,6 +24,7 @@ var dueker = {
 				
 			}
 		});
+*/
 		$('#dueker_lvchumlvers_page').live("pageshow", function() {
 			if ($('#dueker_lvchumlvers_nve').attr('value') == '') {
 				$('#dueker_lvchumlvers_nve').focus();
