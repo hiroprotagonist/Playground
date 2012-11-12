@@ -7,9 +7,19 @@ var dueker = {
 			if ( dlg.length > 0) {
 				// $( dlg ).popup("open");
 				// alert( dlg.text() );
-				var pop = $('<div data-role="popup">moin</div>');
-				$(this).append( pop );
-				pop.popup( 'open' );
+				// var pop = $('<div data-role="popup">moin</div>');
+				// $(this).append( pop );
+				// pop.popup( 'open' );
+				$('<div>').simpledialog2({
+					mode: 'blank',
+					headerText: 'Some Stuff',
+					headerClose: true,
+					blankContent : 
+					      "<ul data-role='listview'><li>Some</li><li>List</li><li>Items</li></ul>"+
+					      // NOTE: the use of rel="close" causes this button to close the dialog.
+					      "<a rel='close' data-role='button' href='#'>Close</a>"
+				});			
+				
 			}
 		});
 		$('#dueker_lvchumlvers_page').live("pageshow", function() {
