@@ -7,7 +7,7 @@ var dueker = {
 	init_lvchumlvers : function () {
 
 		$('.dueker_lvchumlvers_page').live( "pageshow", function() {
-			var dlg = $('.dueker_lvchumlvers_page_errorMsgDialog');
+			var dlg = $(this, '.dueker_lvchumlvers_page_errorMsgDialog');
 			
 			console.log('ps dlg=' + dlg);
 			
