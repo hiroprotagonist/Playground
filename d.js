@@ -7,7 +7,7 @@ var dueker = {
 			if ( dlg.length > 0) {
 				// $( dlg ).popup("open");
 				// alert( dlg.text() );
-				var pop = $('<div>').html( '<p>moin moin</p>' );
+				var pop = $('<div data-role="popup">moin</div>');
 				$(this).append( pop );
 				pop.popup( 'open' );
 			}
