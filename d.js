@@ -10,7 +10,7 @@ var dueker = {
 				// var pop = $('<div data-role="popup">moin</div>');
 				// $(this).append( pop );
 				// pop.popup( 'open' );
-				/*
+				
 				$('<div>').simpledialog2({
 					mode: 'blank',
 					headerText: 'Some Stuff',
@@ -20,7 +20,7 @@ var dueker = {
 					      // NOTE: the use of rel="close" causes this button to close the dialog.
 					      "<a rel='close' data-role='button' href='#'>Close</a>"
 				});
-				*/
+			
 				
 			}
 		});
