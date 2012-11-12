@@ -4,9 +4,11 @@ var dueker = {
 
 		$('.dueker_lvchumlvers_page').live( "pageshow", function() {
 			var dlg = $('.dueker_lvchumlvers_page_errorMsgDialog', this);
-			if ( typeof dlg !== 'undefined' ) {
+			if ( dlg.length > 0) {
 				// $( dlg ).popup("open");
-				alert( dlg.text() );
+				// alert( dlg.text() );
+				var pop = $('<div>').html( '<p>moin moin</p>' );
+				pop.popup( 'open' );
 			}
 		});
 		$('#dueker_lvchumlvers_page').live("pageshow", function() {
