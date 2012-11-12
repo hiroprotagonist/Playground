@@ -12,7 +12,8 @@ var dueker = {
 			console.log('ps dlg=' + dlg);
 			
 			if ( typeof dlg !== 'undefined' ) {
-				$( dlg ).popup("open");
+				// $( dlg ).popup("open");
+				alert( dlg.text() );
 			}
 		});
 
