@@ -2,13 +2,13 @@
 $(document).bind( 'mobileinit', function () {
 	$.mobile.ajaxEnabled = false;
 });
-
+var ding;
 var dueker = {
 	init_lvchumlvers : function () {
 
 		$('.dueker_lvchumlvers_page').live( "pageshow", function() {
 			var dlg = $('.dueker_lvchumlvers_page_errorMsgDialog', this);
-			
+			ding = dlg;		
 			console.log('ps dlg=' + dlg);
 			
 			if ( typeof dlg !== 'undefined' ) {
